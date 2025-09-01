@@ -70,24 +70,50 @@ class MailGenerator:
                 print(f"No se encontró mail para CUIT {cuit}, se omite.")
                 continue
             encabezado_html = "<p>Estimado,</p><p>Adjuntamos el detalle de comisiones pendientes:</p>"
-            items_html = ""
+            # Construimos una tabla con encabezados fijos y filas por cada comprobante
+            filas_html = ""
             for _, fila in grupo.iterrows():
-                items_html += (
-                    "<li>"
-                    f"Empresa: {cuit}, "
-                    f"Comprobante: {fila['COMPROBANTE']}, "
-                    f"Contrato: {fila['CONTRATO']}, "
-                    f"Fecha: {fila['FECHA']}, "
-                    f"Comisión pendiente: ${fila['COMISION PENDIENTE']:.2f}"
-                    "</li>"
+                fecha = fila['FECHA']
+                try:
+                    fecha_str = pd.to_datetime(fecha).strftime('%d/%m/%Y')
+                except Exception:
+                    fecha_str = str(fecha)
+                comision = fila['COMISION PENDIENTE']
+                try:
+                    comision_str = f"$ {comision:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+                except Exception:
+                    comision_str = f"$ {comision}"
+                filas_html += (
+                    "<tr>"
+                    f"<td style='padding:6px 8px; border:1px solid #ddd'>{cuit}</td>"
+                    f"<td style='padding:6px 8px; border:1px solid #ddd'>{fila['COMPROBANTE']}</td>"
+                    f"<td style='padding:6px 8px; border:1px solid #ddd'>{fila['CONTRATO']}</td>"
+                    f"<td style='padding:6px 8px; border:1px solid #ddd; white-space:nowrap'>{fecha_str}</td>"
+                    f"<td style='padding:6px 8px; border:1px solid #ddd; text-align:right'>{comision_str}</td>"
+                    "</tr>"
                 )
+
+            tabla_html = (
+                "<table style='border-collapse:collapse; font-family:Arial,Helvetica,sans-serif; font-size:14px; margin:0 0 12px 0'>"
+                "<thead>"
+                "<tr style='background:#f3f3f3'>"
+                "<th style='padding:8px; border:1px solid #ddd; text-align:left'>Empresa</th>"
+                "<th style='padding:8px; border:1px solid #ddd; text-align:left'>Comprobante</th>"
+                "<th style='padding:8px; border:1px solid #ddd; text-align:left'>Contrato</th>"
+                "<th style='padding:8px; border:1px solid #ddd; text-align:left'>Fecha</th>"
+                "<th style='padding:8px; border:1px solid #ddd; text-align:right'>Comisión pendiente</th>"
+                "</tr>"
+                "</thead>"
+                f"<tbody>{filas_html}</tbody>"
+                "</table>"
+            )
+
             cuerpo = (
                 f"{encabezado_html}"
-                f"<ul style='margin:0 0 12px 18px'>{items_html}</ul>"
+                f"{tabla_html}"
                 "<p>Por favor, regularizar a la brevedad.<br>Saludos.</p>"
             )
 
-            #enviar_mail(cuerpo, destinatario=mails, asunto="Comisiones pendientes", es_html=True, logo_path="Logo Rueda Cereales - Edited.png")
-            enviar_mail(cuerpo, "fsobral@fi.uba.ar", asunto="Comisioness pendientes", es_html=True, logo_path="Logo Rueda Cereales - Edited.png")
+            enviar_mail(cuerpo, destinatario=mails, asunto="Comisiones pendientes", es_html=True, logo_path="Logo Rueda Cereales - Edited.png")
             print(f"Mail enviado a: {mails}")
             
