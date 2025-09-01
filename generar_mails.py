@@ -111,7 +111,7 @@ class MailGenerator:
             cuerpo = (
                 f"{encabezado_html}"
                 f"{tabla_html}"
-                "<p>Por favor, regularizar a la brevedad.<br>Saludos.</p>"
+                "<p>Por favor, regularizar a la brevedad.</p>"
             )
 
             enviar_mail(cuerpo, destinatario=mails, asunto="Comisiones pendientes", es_html=True, logo_path="Logo Rueda Cereales - Edited.png")
