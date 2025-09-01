@@ -1,0 +1,54 @@
+  "juaneiras@grupoeiras.com.ar",
+  "lobos@grupoeiras.com.ar",
+  "brandsen@grupoeiras.com.ar"
+]
+
+30664911252=[
+  "santiago@lacteoslapionera.com.ar",
+  "administracion@lacteoslapionera.com.ar"
+]
+
+30538760966=[
+  "valentinmorales4@gmail.com",
+  "estlacarmensrl@gmail.com",
+  "bonadeomagdalena@gmail.com",
+  "lacarmen@huanchilla.com.ar",
+  "gerencialacarmen@gmail.com"
+]
+
+30708219513=[
+  "administracion@loscharabones.com.ar"
+]
+
+30710501587=[
+  "administracion@agro3.com.ar"
+]
+
+30707928189=[
+  "administracion@dabefa.com.ar"
+]
+
+30717202429=[
+  "elena.alessandretti@gmail.com"
+]
+
+30557941548=[
+  "guillermolorenzoni@yahoo.com.ar",
+  "bernardo.llorente@llorentehnos.com",
+  "asistente.gestion@llorentehnos.com"
+]
+
+30690272988=[
+  "magnascoagricola@gmail.com",
+  "pedro@magnascoag.com"
+]
+
+30712339531=[
+  "lamatildesh@gmail.com"
+]
+
+30710813139=[
+  "javier.koroch@yahoo.com",
+  "javier.koroch@gmail.com",
+  "cramorales@hotmail.com"
+]
